@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Google Classroom</title>
+    <link id="pageFavicon" rel="icon" href="https://ssl.gstatic.com/classroom/ic_product_classroom_32.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Canvas para red neuronal -->
+    <canvas id="neuralCanvas"></canvas>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="assets/logo.png" alt="Zenthra Logo" class="logo-image" onerror="this.style.display='none';">
+            <div class="logo">ZENTHRA</div>
+        </div>
+        <nav class="header-nav">
+            <a href="#home" onclick="scrollToSection('home'); return false;">Home</a>
+            <a href="#games" onclick="scrollToSection('games'); return false;">Games</a>
+            <a href="#apps" onclick="scrollToSection('apps'); return false;">Apps</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Sección Home -->
+        <section id="home" class="content-section active">
+            <div class="top-banner">
+                <h1 class="logo-text">ZENTHRA</h1>
+                <p class="subtitle">UNBLOCKED</p>
+                <button class="get-started-btn" onclick="scrollToSection('games')">Get Started now →</button>
+                <p class="version-info">Chrome OS Compatible | Always Updated</p>
+            </div>
+
+            <div class="info-boxes">
+                <!-- Stats Box -->
+                <div class="info-box">
+                    <h3>Platform Statistics</h3>
+                    <div class="stat-row">
+                        <span class="stat-label">Total Games</span>
+                        <span class="stat-value" id="gameCount">11</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Total Apps</span>
+                        <span class="stat-value">8</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Status</span>
+                        <span class="status-badge">● Online</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Uptime</span>
+                        <span class="stat-value">99.9%</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Last Update</span>
+                        <span class="stat-value">Today</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Server Region</span>
+                        <span class="stat-value">Florida</span>
+                    </div>
+                </div>
+
+                <!-- Changelog Box -->
+                <div class="info-box">
+                    <h3>Latest Updates</h3>
+                    <div class="changelog-item">
+                        <div class="changelog-version">v2.9.0 - Feb 11, 2026</div>
+                        <div class="changelog-text">Added VIP system, favorites, custom colors, and improved panic button</div>
+                    </div>
+                    <div class="changelog-item">
+                        <div class="changelog-version">v2.8.0 - Feb 11, 2026</div>
+                        <div class="changelog-text">Reorganized settings, fixed category filters, added multi-category support</div>
+                    </div>
+                    <div class="changelog-item">
+                        <div class="changelog-version">v2.7.0 - Feb 11, 2026</div>
+                        <div class="changelog-text">Added Pokemon collection, improved notifications, and settings import/export</div>
+                    </div>
+                    <div class="changelog-item">
+                        <div class="changelog-version">v2.6.0 - Feb 11, 2026</div>
+                        <div class="changelog-text">Added new games and improved panic button reliability</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Games -->
+        <section id="games" class="content-section">
+            <div class="games-header">
+                <h2 class="section-title">Game Library</h2>
+                <div class="games-controls">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search games...">
+                    <select id="categoryFilter" class="category-select">
+                        <option value="all">All Categories</option>
+                        <option value="shooter">Shooter</option>
+                        <option value="action">Action</option>
+                        <option value="arcade">Arcade</option>
+                        <option value="sports">Sports</option>
+                        <option value="sandbox">Sandbox</option>
+                        <option value="racing">Racing</option>
+                        <option value="rpg">RPG</option>
+                    </select>
+                    <label class="favorites-checkbox">
+                        <input type="checkbox" id="favoritesFilter">
+                        <span>⭐ Favorites Only</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="games-grid" id="gamesGrid">
+                <!-- Games will be loaded dynamically -->
+            </div>
+        </section>
+
+        <!-- Sección Apps -->
+        <section id="apps" class="content-section">
+            <h2 style="font-size: 2em; color: #c4b5fd; margin-bottom: 10px;">Quick Access Apps</h2>
+            <p style="color: #9ca3af; margin-bottom: 30px;">Access your favorite tools instantly</p>
+            
+            <div class="apps-grid">
+                <div class="app-card" onclick="window.open('https://classroom.google.com/', '_blank')">
+                    <div class="app-icon">📚</div>
+                    <div class="app-name">Google Classroom</div>
+                </div>
+                <div class="app-card" onclick="window.open('https://docs.google.com/', '_blank')">
+                    <div class="app-icon">📄</div>
+                    <div class="app-name">Google Docs</div>
+                </div>
+                <div class="app-card" onclick="window.open('https://mail.google.com/', '_blank')">
+                    <div class="app-icon">📧</div>
+                    <div class="app-name">Gmail</div>
+                </div>
+                <div class="app-card" onclick="window.open('https://drive.google.com/', '_blank')">
+                    <div class="app-icon">💾</div>
+                    <div class="app-name">Google Drive</div>
+                </div>
+                <div class="app-card" onclick="window.open('https://www.youtube.com/', '_blank')">
+                    <div class="app-icon">🎥</div>
+                    <div class="app-name">YouTube</div>
+                </div>
+                <div class="app-card" onclick="window.open('https://calendar.google.com/', '_blank')">
+                    <div class="app-icon">📅</div>
+                    <div class="app-name">Google Calendar</div>
+                </div>
+                <div class="app-card" onclick="window.open('https://www.canva.com/', '_blank')">
+                    <div class="app-icon">🎨</div>
+                    <div class="app-name">Canva</div>
+                </div>
+                <div class="app-card" onclick="window.open('https://www.notion.so/', '_blank')">
+                    <div class="app-icon">📝</div>
+                    <div class="app-name">Notion</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Settings -->
+        <section id="settings" class="content-section">
+            <h2 style="font-size: 2em; color: #c4b5fd; margin-bottom: 10px;">Settings</h2>
+            <p style="color: #9ca3af; margin-bottom: 30px;">Customize your Zenthra experience</p>
+
+            <!-- TAB CLOAKING -->
+            <div class="settings-category">
+                <h3 class="settings-category-title">🔒 Tab Cloaking</h3>
+                <p class="settings-category-desc">Disguise your tab as another website</p>
+                
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3>Site Title</h3>
+                            <p>Change the name displayed in the browser tab</p>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" id="siteTitle" class="input-field" placeholder="Google Classroom" value="Google Classroom">
+                            <button class="save-btn" onclick="saveSiteTitle()">Save</button>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3>Site Favicon</h3>
+                            <p>Change the icon displayed in the browser tab</p>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" id="siteFavicon" class="input-field" placeholder="Favicon URL" value="https://ssl.gstatic.com/classroom/ic_product_classroom_32.png">
+                            <button class="save-btn" onclick="saveFavicon()">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANIC BUTTON -->
+            <div class="settings-category">
+                <h3 class="settings-category-title">🚨 Panic Button</h3>
+                <p class="settings-category-desc">Quickly redirect to another site when someone walks by</p>
+                
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3>Panic Key</h3>
+                            <p>Press this key to activate panic mode</p>
+                        </div>
+                        <input type="text" id="panicKey" class="input-field panic-key" value="ESCAPE" readonly>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3>Panic URL</h3>
+                            <p>Website to redirect to when panic button is pressed</p>
+                        </div>
+                        <input type="text" id="panicUrl" class="input-field" placeholder="https://classroom.google.com/" value="https://classroom.google.com/">
+                    </div>
+
+                    <div class="setting-item">
+                        <button class="save-btn" style="width: 100%;" onclick="savePanicSettings()">Save Panic Settings</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="settings-category">
+                <h3 class="settings-category-title">🎨 Appearance</h3>
+                <p class="settings-category-desc">Customize the visual experience</p>
+                
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3>Particle Effects</h3>
+                            <p>Enable or disable animated background particles</p>
+                        </div>
+                        <div class="toggle-switch active" onclick="toggleParticles(this)">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3>Reduce Animations</h3>
+                            <p>Disable animations for better performance on slower devices</p>
+                        </div>
+                        <div class="toggle-switch" onclick="toggleAnimations(this)">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIP THEMES & COLORS (Solo visible si eres VIP) -->
+            <div class="settings-category vip-colors-section">
+                <h3 class="settings-category-title">👑 VIP Theme Customization</h3>
+                <p class="settings-category-desc">Choose from premium themes or create your own</p>
+                
+                <div class="settings-list">
+                    <!-- Premium Themes -->
+                    <div class="setting-item" style="flex-direction: column; align-items: stretch;">
+                        <div class="setting-info" style="margin-right: 0; margin-bottom: 20px;">
+                            <h3>🎨 Premium Themes</h3>
+                            <p>Select from 8 professionally designed themes</p>
+                        </div>
+                        
+                        <div id="themeSelector" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                            <!-- Themes will be loaded here by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Custom Colors -->
+                    <div class="setting-item" style="flex-direction: column; align-items: stretch;">
+                        <div class="setting-info" style="margin-right: 0; margin-bottom: 20px;">
+                            <h3>🖌️ Custom Color Picker</h3>
+                            <p>Create your own unique color scheme</p>
+                        </div>
+                        
+                        <div class="color-picker-grid">
+                            <div class="color-picker-item">
+                                <label>Primary Color</label>
+                                <input type="color" id="colorPrimary" value="#7c3aed">
+                            </div>
+                            <div class="color-picker-item">
+                                <label>Secondary Color</label>
+                                <input type="color" id="colorSecondary" value="#6d28d9">
+                            </div>
+                            <div class="color-picker-item">
+                                <label>Accent Color</label>
+                                <input type="color" id="colorAccent" value="#a78bfa">
+                            </div>
+                            <div class="color-picker-item">
+                                <label>Light Color</label>
+                                <input type="color" id="colorLight" value="#c4b5fd">
+                            </div>
+                        </div>
+                        
+                        <div class="color-actions">
+                            <button class="save-btn" onclick="saveColors()">Save Custom Colors</button>
+                            <button class="action-btn" onclick="resetColors()">Reset to Default</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DATA MANAGEMENT -->
+            <div class="settings-category">
+                <h3 class="settings-category-title">💾 Data Management</h3>
+                <p class="settings-category-desc">Backup and restore your settings and game data</p>
+                
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3>Backup Settings</h3>
+                            <p>Download all your settings, favorites, and VIP status as a file</p>
+                        </div>
+                        <button class="action-btn" onclick="downloadSettings()">
+                            <svg style="width:16px;height:16px;display:inline;margin-right:5px" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" />
+                            </svg>
+                            Download Backup
+                        </button>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3>Restore Settings</h3>
+                            <p>Upload a previously downloaded settings file to restore</p>
+                        </div>
+                        <button class="action-btn" onclick="uploadSettings()">
+                            <svg style="width:16px;height:16px;display:inline;margin-right:5px" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z" />
+                            </svg>
+                            Upload Backup
+                        </button>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3>Clear Game Cache</h3>
+                            <p>Clear all cached game data to free up storage space</p>
+                        </div>
+                        <button class="action-btn clear-btn" onclick="clearCache()">
+                            <svg style="width:16px;height:16px;display:inline;margin-right:5px" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+                            </svg>
+                            Clear Cache
+                        </button>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3>Reset Everything</h3>
+                            <p>Reset all settings to their default values. This action cannot be undone!</p>
+                        </div>
+                        <button class="action-btn reset-btn" onclick="resetSettings()">
+                            <svg style="width:16px;height:16px;display:inline;margin-right:5px" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12,4C14.1,4 16.1,4.8 17.6,6.3C20.7,9.4 20.7,14.5 17.6,17.6C15.8,19.5 13.3,20.2 10.9,19.9L11.4,17.9C13.1,18.1 14.9,17.5 16.2,16.2C18.5,13.9 18.5,10.1 16.2,7.7C15.1,6.6 13.5,6 12,6V10.6L7,5.6L12,0.6V4M6.3,17.6C3.7,15 3.3,11 5.1,7.9L6.6,9.4C5.5,11.6 5.9,14.4 7.8,16.2C8.3,16.7 8.9,17.1 9.6,17.4L9,19.4C8,19 7.1,18.4 6.3,17.6Z" />
+                            </svg>
+                            Reset All Settings
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Navbar con VIP -->
+    <nav class="navbar">
+        <div class="nav-item active" onclick="switchSection('home', this)">
+            <img src="assets/home.png" alt="Home" class="nav-icon-img" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'nav-icon\'>🏠</div><div class=\'nav-label\'>Home</div>';">
+            <div class="nav-label">Home</div>
+        </div>
+        <div class="nav-item" onclick="switchSection('games', this)">
+            <img src="assets/game.png" alt="Games" class="nav-icon-img" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'nav-icon\'>🎮</div><div class=\'nav-label\'>Games</div>';">
+            <div class="nav-label">Games</div>
+        </div>
+        <div class="nav-item" onclick="switchSection('apps', this)">
+            <img src="assets/apps.png" alt="Apps" class="nav-icon-img" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'nav-icon\'>📱</div><div class=\'nav-label\'>Apps</div>';">
+            <div class="nav-label">Apps</div>
+        </div>
+        <div class="nav-item" onclick="switchSection('settings', this)">
+            <img src="assets/settings.png" alt="Settings" class="nav-icon-img" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'nav-icon\'>⚙️</div><div class=\'nav-label\'>Settings</div>';">
+            <div class="nav-label">Settings</div>
+        </div>
+        <div class="nav-item vip-item" onclick="showVIPModal()">
+            <img src="assets/vip.png" alt="VIP" class="nav-icon-img" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'nav-icon\'>👑</div><div class=\'nav-label\'>VIP</div>';">
+            <div class="nav-label">VIP</div>
+        </div>
+    </nav>
+
+    <!-- ORDEN CORRECTO DE CARGA:
+         1. init.js - Define funciones stub para evitar errores
+         2. config.js - Configuración
+         3. games-data.js - Datos de juegos
+         4. features-final.js - Sistema VIP y features (SIN duplicados)
+         5. script.js - Lógica principal
+    -->
+    <script src="init.js"></script>
+    <script src="config.js"></script>
+    <script src="games-data.js"></script>
+    <script src="features.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
